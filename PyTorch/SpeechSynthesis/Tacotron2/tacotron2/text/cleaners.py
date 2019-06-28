@@ -82,9 +82,15 @@ def transliteration_cleaners(text):
 
 def english_cleaners(text):
   '''Pipeline for English text, including number and abbreviation expansion.'''
+  print("==2.1.1", text)
   text = convert_to_ascii(text)
+  print("==2.1.2", text)
   text = lowercase(text)
+  print("==2.1.3", text)
   text = expand_numbers(text)
+  print("==2.1.4", text)
   text = expand_abbreviations(text)
+  print("==2.1.5", text)
   text = collapse_whitespace(text)
+  print("==2.1.6", text)
   return text

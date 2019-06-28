@@ -188,11 +188,14 @@ def main():
                 _, mel, _, _ = tacotron2.infer(sequence)
                 _ = waveglow.infer(mel)
 
+    print("==x1", args.sigma_infer)
     for i, text in enumerate(texts):
-
+        print(i, text)
         LOGGER.iteration_start()
-
+        ## print(text_to_sequence(text, ['english_cleaners']))
+        ## print(text_to_sequence(text, ['basic_cleaners']))
         sequence = np.array(text_to_sequence(text, ['english_cleaners']))[None, :]
+
         sequence = torch.autograd.Variable(
             torch.from_numpy(sequence)).cuda().long()
 
@@ -218,6 +221,8 @@ def main():
         LOGGER.iteration_stop()
 
     LOGGER.finish()
+
+
 
 if __name__ == '__main__':
     main()
